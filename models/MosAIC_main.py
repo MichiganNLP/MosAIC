@@ -15,10 +15,8 @@ import re
 current_path = os.getcwd()
 print("Current path:", current_path)
 
-# file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/GD-VCR/GD_VCR.csv'
-# file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/dollarstreet_unprocessed/dollarstreet_RIC_tagged.csv'
-# file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/CVQA/cvqa_RIC_tagged.csv'
-file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/GeoDE/GeoDE_RIC_tagged.csv'
+
+file_path = ''
 df = pd.read_csv(file_path)
 
 
@@ -130,16 +128,8 @@ china_agent = Agent("China", True, True, ["Language generation"], model, process
 moderator = Agent("Moderator", True, True, ["Language generation"], model, processor, device)
 summarizer = Agent("Summarizer", True, True, ["Language generation"], model, processor, device)
 
+base_path = ''
 
-#  image = Image.open('../2024_embeding_difference/test_images_complexScene/n1.jpeg')
-
-# image_source = "./2024_embeding_difference/test_images_complexScene/Christmas-Celebration-in-India.png"
-# image_source = "india2.png"
-
-# base_path = '/nfs/turbo/coe-mihalcea/shared_data/GD-VCR/X_VCR'
-base_path = '/nfs/turbo/coe-mihalcea/shared_data/GeoDE/images'
-# base_path = '/nfs/turbo/coe-mihalcea/shared_data/dollarstreet'
-# base_path = '/nfs/turbo/coe-mihalcea/shared_data/cvqa/data/saved_images_RIC'
 
 def generate_caption(relative_path):
 
@@ -287,7 +277,7 @@ def generate_caption(relative_path):
 df['llava_agent_caption'] = [generate_caption(path) for path in tqdm(df['file_path'], desc="Generating Captions")] #  dollarstreet: imageRelPath; GD-VCR: img_path
 
 # Save the DataFrame with captions
-output_file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/caption_results/llava_agent_cot_eng_GeoDE.csv'
+output_file_path = ''
 df.to_csv(output_file_path, index=False)
 
 print("Captions generated and saved successfully.")

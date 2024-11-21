@@ -15,9 +15,8 @@ import re
 current_path = os.getcwd()
 print("Current path:", current_path)
 
-# file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/GD-VCR/GD_VCR.csv'
-# file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/dollarstreet_unprocessed/dollarstreet_RIC_tagged_500.csv'
-file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/datasets/GeoDE/GeoDE_RIC_tagged_500.csv'
+
+file_path = ''
 df = pd.read_csv(file_path)
 
 
@@ -234,14 +233,8 @@ CN_prompt_3 = (f"SYSTEM: 您是来自{china_agent.role}的人，您非常了解�
 multilingual_prompt_3 = [US_prompt_3, IN_prompt_3, RO_prompt_3, CN_prompt_3]
 
 
-#  image = Image.open('../2024_embeding_difference/test_images_complexScene/n1.jpeg')
+base_path = ''
 
-# image_source = "./2024_embeding_difference/test_images_complexScene/Christmas-Celebration-in-India.png"
-# image_source = "india2.png"
-
-# base_path = '/nfs/turbo/coe-mihalcea/shared_data/GD-VCR/X_VCR'
-base_path = '/nfs/turbo/coe-mihalcea/shared_data/GeoDE/images'
-# base_path = '/nfs/turbo/coe-mihalcea/shared_data/dollarstreet'
 
 def generate_caption(relative_path):
 
@@ -386,10 +379,10 @@ def generate_caption(relative_path):
 
 
 
-df['llava_agent_caption'] = [generate_caption(path) for path in tqdm(df['file_path'], desc="Generating Captions")] #  dollarstreet: imageRelPath; GD-VCR: img_path
+df['llava_agent_caption'] = [generate_caption(path) for path in tqdm(df['file_path'], desc="Generating Captions")]
 
 # Save the DataFrame with captions
-output_file_path = 'MultiAgent_Multicultural_ImageUnderstanding/test_longju/caption_results/llava_agent_cot_multilingual_GeoDE_RIC500.csv'
+output_file_path = ''
 df.to_csv(output_file_path, index=False)
 
 print("Captions generated and saved successfully.")
